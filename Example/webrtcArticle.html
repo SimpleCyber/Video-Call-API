@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebRTC Documentation</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.0.17/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --background-color: #f4f4f4;
+            --text-color: #333;
+            --content-bg: #fff;
+            --code-bg: #eee;
+            --pre-bg: #222;
+            --pre-color: #fff;
+            --heading-color: #007bff;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="dark"] {
+            --background-color: #1a1a1a;
+            --text-color: #fff;
+            --content-bg: #2d2d2d;
+            --code-bg: #3d3d3d;
+            --pre-bg: #000;
+            --pre-color: #fff;
+            --heading-color: #66b0ff;
+            --shadow-color: rgba(0, 0, 0, 0.3);
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        #header {
+            display: flex;
+            justify-content: flex-end;
+            padding: 1rem;
+            /* background-color: var(--content-bg); */
+            /* box-shadow: 0 2px 5px var(--shadow-color); */
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            margin-right: 1rem;
+        }
+
+        .github-link {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 1.5rem;
+            padding: 0.5rem;
+        }
+
+        #content {
+            max-width: 800px;
+            margin: 2rem auto;
+            background: var(--content-bg);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 0 10px var(--shadow-color);
+        }
+
+        h1 {
+            font-size: 2.5em;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--heading-color);
+        }
+
+        h2 {
+            font-size: 1.75em;
+            color: var(--heading-color);
+            margin-top: 2rem;
+        }
+
+        p {
+            font-size: 1.2em;
+            margin: 1rem 0;
+        }
+
+        code {
+            font-family: 'Courier New', monospace;
+            background: var(--code-bg);
+            padding: 0.2em 0.4em;
+            border-radius: 4px;
+        }
+
+        pre {
+            background: var(--pre-bg);
+            color: var(--pre-color);
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            margin: 1.5rem auto;
+            border-radius: 5px;
+            box-shadow: 0 0 5px var(--shadow-color);
+        }
+
+        @media (max-width: 850px) {
+            #content {
+                margin: 1rem;
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <button class="theme-toggle" id="theme-toggle">
+            <i class="fas fa-sun"></i>
+        </button>
+        <a href="https://github.com/SimpleCyber/Video-Call-API" 
+           class="github-link" 
+           target="_blank" 
+           title="Star on GitHub">
+            <i class="fab fa-github"></i>
+        </a>
+    </div>
+
+    <div id="content"></div>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const icon = themeToggle.querySelector('i');
+        
+        function setTheme(isDark) {
+            document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+            icon.className = isDark ? 'fas fa-moon' : 'fas fa-sun';
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        }
+
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        setTheme(savedTheme === 'dark');
+
+        // Theme toggle event listener
+        themeToggle.addEventListener('click', () => {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'light';
+            setTheme(isDark);
+        });
+
+        // Load and render markdown
+        fetch("../webrtc.md")
+            .then(response => response.text())
+            .then(text => {
+                document.getElementById("content").innerHTML = marked.parse(text);
+            })
+            .catch(error => {
+                console.error("Error loading Markdown:", error);
+                document.getElementById("content").innerHTML = "<p>Error loading documentation. Please try again later.</p>";
+            });
+    </script>
+</body>
+</html>

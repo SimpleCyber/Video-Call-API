@@ -1,5 +1,5 @@
-## **WebRTC**  
-<p align="center">
+## **WebRTC Documentation**  
+<p>
     <img src="https://imgs.search.brave.com/Moego70EbNv5ChegfozHloDE29QqXML9PmAeVkWidQM/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly91cGxv/YWQud2lraW1lZGlh/Lm9yZy93aWtpcGVk/aWEvY29tbW9ucy82/LzY4L1dlYlJUQ19M/b2dvLnN2Zw"  alt="WebRTC Logo" style="background-color:white; padding:10px;">
 </p>  
 
@@ -13,7 +13,7 @@
 ---
 
 ## **Protocols**  
-![Protocols](./Example/images/protocols.png)  
+![Protocols](/Example/images/protocols.png)  
 
 ### **TCP (Transmission Control Protocol)**  
 - Ensures **all packets reach** the end-user.  
@@ -37,7 +37,7 @@
 ## **IP Addressing**  
 An IP address is a **unique identifier** assigned to each device.  
 
-![IP](./Example/images/ip.png)  
+![IP](/Example/images/ip.png)  
 
 - Your device connects to a **router**, which then connects to the **internet**.  
 - The router assigns a **Private IP** (known to your browser).  
@@ -49,12 +49,12 @@ An IP address is a **unique identifier** assigned to each device.
 ## **How WebRTC Works?**  
 
 ### **1. Determining Public IP**  
-![IP](./Example/images/Trun.png)  
+![IP](/Example/images/Trun.png)  
 - Uses **TURN/ICE servers** to retrieve the public IP.  
 - The browser sends a request to the ICE server, which **responds with the Public IP**.  
 
 ### **2. Signaling**  
-![Signaling](./Example/images/signaling.png)  
+![Signaling](/Example/images/signaling.png)  
 - To establish a connection, **private & public IPs** are exchanged.  
 - A **Node.js server** is used to transmit this information.  
 - Once connected, **direct peer-to-peer (P2P) communication** begins.  
@@ -73,7 +73,7 @@ An IP address is a **unique identifier** assigned to each device.
 - **Not scalable** for large groups.  
 
 ### **3. SFU (Selective Forwarding Unit) - Preferred**  
-![SFU](./Example/images/SFU.png)  
+![SFU](/Example/images/SFU.png)  
 - **All users connect to a virtual server**, which merges and distributes streams.  
 - **Most commonly used in large-scale applications** like:  
   - **Google Meet**  
@@ -82,4 +82,4 @@ An IP address is a **unique identifier** assigned to each device.
 
 ---
 
-This README is on **WrbRTC** How it works ? Lets see the project  now ! 🚀 
+This README is on **WrbRTC** How it works ? Lets see the project  now ! 
